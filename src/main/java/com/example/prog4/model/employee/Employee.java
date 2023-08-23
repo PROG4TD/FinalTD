@@ -1,5 +1,6 @@
-package com.example.prog4.model;
+package com.example.prog4.model.employee;
 
+import com.example.prog4.model.Phone;
 import com.example.prog4.repository.entity.Position;
 import com.example.prog4.repository.entity.enums.Csp;
 import com.example.prog4.repository.entity.enums.Sex;
