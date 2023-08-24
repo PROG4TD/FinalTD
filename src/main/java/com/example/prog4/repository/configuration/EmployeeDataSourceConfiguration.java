@@ -1,4 +1,4 @@
-package com.example.prog4;
+package com.example.prog4.repository.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -20,28 +20,28 @@ import java.util.HashMap;
 @Configuration
 @PropertySource({"classpath:application.properties"})
 @EnableJpaRepositories(
-        basePackages = "com.example.prog4.repository.cnaps",
-        entityManagerFactoryRef = "cnapsEntityManager",
-        transactionManagerRef = "cnapsTransactionManager")
-public class PersistenceCnapsConfig {
+        basePackages = "com.example.prog4.repository.employee",
+        entityManagerFactoryRef = "employeeEntityManager",
+        transactionManagerRef = "employeeTransactionManager")
+public class EmployeeDataSourceConfiguration {
     @Autowired
     private Environment env;
 
     @Primary
     @Bean
-    @ConfigurationProperties(prefix="spring.second-datasource")
-    public DataSource cnapsDataSource() {
+    @ConfigurationProperties(prefix="spring.datasource")
+    public DataSource employeeDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
     @Primary
-    public LocalContainerEntityManagerFactoryBean cnapsEntityManager() {
+    public LocalContainerEntityManagerFactoryBean employeeEntityManager() {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(cnapsDataSource());
+        em.setDataSource(employeeDataSource());
         em.setPackagesToScan(
-                new String[] { "com.example.prog4.model.cnaps" });
+                new String[] { "com.example.prog4.model.employee" });
 
         HibernateJpaVendorAdapter vendorAdapter
                 = new HibernateJpaVendorAdapter();
@@ -58,12 +58,12 @@ public class PersistenceCnapsConfig {
 
     @Primary
     @Bean
-    public PlatformTransactionManager cnapsTransactionManager() {
+    public PlatformTransactionManager employeeTransactionManager() {
 
         JpaTransactionManager transactionManager
                 = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(
-                cnapsEntityManager().getObject());
+                employeeEntityManager().getObject());
         return transactionManager;
     }
 }
