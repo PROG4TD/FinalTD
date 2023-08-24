@@ -1,5 +1,6 @@
 package com.example.prog4.model.cnaps;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -52,6 +53,6 @@ public class CnapsEmployee implements Serializable {
     private LocalDate departureDate;
 
     private Integer childrenNumber;
-
+    @Column(name = "end_to_end_id")
     private String endToEndId;
 }

@@ -4,6 +4,7 @@ import com.example.prog4.model.Phone;
 import com.example.prog4.repository.entity.Position;
 import com.example.prog4.repository.entity.enums.Csp;
 import com.example.prog4.repository.entity.enums.Sex;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -46,4 +47,6 @@ public class Employee implements Serializable {
 
     private List<Position> positions;
     private List<Phone> phones;
+    @Column(name = "end_to_end_id")
+    private String endToEndId;
 }
